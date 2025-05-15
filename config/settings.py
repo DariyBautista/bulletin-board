@@ -135,7 +135,7 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "False") == "True"
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
