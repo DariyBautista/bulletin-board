@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block content %}
+  <h2>Вхід</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Увійти</button>
+  </form>
+
+  <div>
+    <p>Або:</p>
+    <form method="get" action="{% provider_login_url 'google' %}">
+      <button type="submit" class="google-button">Увійти через Google</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load socialaccount %}
+
+{% block content %}
+  <h1>Профіль користувача</h1>
+  <p>Вітаємо, {{ user.username }}!</p>
+
+  <ul>
+  <strong>Основні дані</strong>
+  <li><strong>Ім’я:</strong> {{ user.first_name }}</li>
+  <li><strong>Прізвище:</strong> {{ user.last_name }}</li>
+  <li><strong>Email:</strong> {{ user.email }}</li>
+  <li><strong>Дата приєднання:</strong> {{ user.date_joined|date:"d.m.Y" }}</li>
+</ul>
+
+<h2>Мої оголошення</h2>
+<ul>
+  {% for ad in user.ad_set.all %}
+    <li>
+      <a href="{% url 'ads:ad_detail' ad.pk %}">{{ ad.title }}</a> ({{ ad.status }})
+    </li>
+  {% empty %}
+    <p>Ви ще не створили жодного оголошення.</p>
+  {% endfor %}
+</ul>
+
+{% endblock %}

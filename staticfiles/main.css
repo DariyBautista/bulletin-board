@@ -1,0 +1,39 @@
+/* static/css/main.css */
+.homepage {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.homepage h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.btn-main {
+    display: inline-block;
+    background-color: #0d6efd;
+    /* Темно-синій */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-main:hover {
+    background-color: #0b5ed7;
+    /* Темніший відтінок */
+    transform: translateY(-2px);
+}
+
+.btn-main:active {
+    background-color: #0a58ca;
+    transform: translateY(0);
+}

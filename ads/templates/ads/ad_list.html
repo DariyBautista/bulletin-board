@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Список оголошень{% endblock %}
+
+{% block content %}
+<h2>Оголошення</h2>
+
+<form method="get" class="filter-form">
+    <label for="category">Категорія:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">Усі категорії</option>
+        {% for key, label in categories %}
+            <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>
+                {{ label }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="subcategory">Підкатегорія:</label>
+    <select name="subcategory" id="subcategory" onchange="this.form.submit()">
+        <option value="">Усі підкатегорії</option>
+        {% for key, label in subcategories %}
+            <option value="{{ key }}" {% if selected_subcategory == key %}selected{% endif %}>
+                {{ label }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul class="ad-list">
+    {% for ad in ads %}
+        <li>
+            <a href="{% url 'ads:ad_detail' ad.pk %}" class="ad-item-link">
+                <div class="ad-content">
+                    <strong>{{ ad.title }}</strong> —
+                    <span class="category">{{ ad.get_category_display }} / {{ ad.get_subcategory_display }}</span> —
+                    <span class="status">{{ ad.get_status_display }}</span> —
+                    <span class="date">{{ ad.created_at|date:"Y-m-d H:i" }}</span>
+                </div>
+            </a>
+        </li>
+    {% empty %}
+        <li>Немає оголошень</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

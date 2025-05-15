@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ ad.title }}{% endblock %}
+
+{% block content %}
+<div class="ad-detail">
+    <h2>{{ ad.title }}</h2>
+    <p><strong>Категорія:</strong> {{ ad.category }} / {{ ad.subcategory }}</p>
+    <p><strong>Статус:</strong> {{ ad.get_status_display }}</p>
+    <p><strong>Опис:</strong></p>
+    <p>{{ ad.description }}</p>
+    <p><em>Створено: {{ ad.created_at|date:"Y-m-d H:i" }}</em></p>
+    {% if request.user == ad.user %}
+    <div class="actions">
+        <a href="{% url 'ads:ad_update' ad.pk %}" class="btn">Редагувати</a> |
+        <a href="{% url 'ads:ad_delete' ad.pk %}" class="btn delete">Видалити</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

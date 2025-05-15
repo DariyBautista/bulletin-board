@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Форма оголошення{% endblock %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Редагувати{% else %}Створити{% endif %} оголошення</h2>
+
+<form method="post" class="ad-form">
+    {% csrf_token %}
+
+    <p>
+        {{ form.title.label_tag }}
+        {{ form.title }}
+    </p>
+
+    <p>
+        {{ form.description.label_tag }}
+        {{ form.description }}
+    </p>
+
+    <p>
+        <label for="id_category">Категорія:</label>
+        <select name="category" id="id_category" onchange="this.form.submit()">
+            <option value="">Оберіть категорію</option>
+            {% for key, label in categories %}
+                <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label for="id_subcategory">Підкатегорія:</label>
+        <select name="subcategory" id="id_subcategory">
+            <option value="">Оберіть підкатегорію</option>
+            {% for key, label in subcategories %}
+                <option value="{{ key }}" {% if form.subcategory.value == key %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        {{ form.status.label_tag }}
+        {{ form.status }}
+    </p>
+
+    <button type="submit" class="btn">Зберегти</button>
+</form>
+{% endblock %}

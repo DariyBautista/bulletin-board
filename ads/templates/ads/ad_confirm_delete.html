@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Видалити оголошення{% endblock %}
+
+{% block content %}
+<div class="delete-confirmation">
+    <h2>Видалити "{{ object.title }}"?</h2>
+    <p>Ви дійсно хочете видалити це оголошення?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn delete">Так, видалити</button>
+        <a href="{% url 'ads:ad_detail' object.pk %}" class="btn cancel">Скасувати</a>
+    </form>
+</div>
+{% endblock %}
