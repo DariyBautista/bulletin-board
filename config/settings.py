@@ -86,6 +86,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///db.sqlite3")
+
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require="postgres" in DATABASE_URL)
 }
